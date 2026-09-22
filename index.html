@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A student technology portfolio created for the GitHub Pages SaaS tutorial.">
+  <title>Phong Bui | Student Tech Portfolio</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: rgba(255, 255, 255, 0.86);
+      --surface-solid: #ffffff;
+      --text: #162033;
+      --muted: #5f6b7a;
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --accent: #14b8a6;
+      --border: rgba(37, 99, 235, 0.14);
+      --shadow: 0 22px 60px rgba(29, 50, 90, 0.13);
+    }
+
+    body.dark {
+      --bg: #0b1120;
+      --surface: rgba(18, 28, 48, 0.88);
+      --surface-solid: #121c30;
+      --text: #edf4ff;
+      --muted: #a8b5c7;
+      --primary: #60a5fa;
+      --secondary: #a78bfa;
+      --accent: #2dd4bf;
+      --border: rgba(148, 163, 184, 0.2);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 4%, rgba(37, 99, 235, 0.18), transparent 32rem),
+        radial-gradient(circle at 92% 16%, rgba(124, 58, 237, 0.16), transparent 30rem),
+        var(--bg);
+      line-height: 1.65;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand { font-weight: 900; letter-spacing: -0.03em; font-size: 1.25rem; }
+    .brand span { color: var(--primary); }
+
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-weight: 650; }
+    .nav-links a:hover { color: var(--primary); }
+
+    button, .button {
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover, .button:hover { transform: translateY(-2px); }
+
+    .theme-button {
+      padding: 9px 13px;
+      color: var(--text);
+      background: var(--surface-solid);
+      border: 1px solid var(--border);
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 56px;
+      padding: 90px 0 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px rgba(20, 184, 166, 0.14); }
+
+    h1 {
+      max-width: 780px;
+      margin: 22px 0 20px;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(100deg, var(--primary), var(--secondary), var(--accent));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-copy { max-width: 650px; color: var(--muted); font-size: 1.12rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .primary { color: white; background: linear-gradient(135deg, #2563eb, #7c3aed); box-shadow: 0 14px 32px rgba(37, 99, 235, 0.25); }
+    .secondary { color: var(--text); background: var(--surface-solid); border: 1px solid var(--border); }
+
+    .code-card {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      background: #0f172a;
+      color: #dbeafe;
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .code-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(96,165,250,.12), transparent 55%); pointer-events: none; }
+    .window-dots { display: flex; gap: 8px; margin-bottom: 24px; }
+    .window-dots span { width: 12px; height: 12px; border-radius: 50%; }
+    .window-dots span:nth-child(1) { background: #fb7185; }
+    .window-dots span:nth-child(2) { background: #fbbf24; }
+    .window-dots span:nth-child(3) { background: #34d399; }
+    pre { margin: 0; white-space: pre-wrap; font: 0.95rem/1.8 "SFMono-Regular", Consolas, monospace; }
+    .code-blue { color: #7dd3fc; }
+    .code-purple { color: #c4b5fd; }
+    .code-green { color: #6ee7b7; }
+
+    section { padding: 90px 0; }
+    .section-heading { max-width: 680px; margin-bottom: 40px; }
+    .section-heading h2 { margin: 0 0 10px; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.045em; }
+    .section-heading p { margin: 0; color: var(--muted); }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: 0 12px 36px rgba(30, 64, 175, 0.07);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .card:hover { transform: translateY(-7px); border-color: var(--primary); }
+    .icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 15px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-size: 1.35rem; font-weight: 900; }
+    .card h3 { margin: 18px 0 8px; font-size: 1.25rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .project { position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+    .project::before { content: attr(data-number); position: absolute; right: 18px; top: -30px; font-size: 8rem; font-weight: 950; color: color-mix(in srgb, var(--primary) 9%, transparent); }
+    .tag { align-self: flex-start; padding: 5px 10px; border-radius: 999px; color: var(--primary); background: color-mix(in srgb, var(--primary) 10%, transparent); font-weight: 800; font-size: 0.8rem; }
+
+    .contact-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 44px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .contact-panel h2 { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 3rem); }
+    .contact-panel p { margin: 0; color: #dbeafe; }
+    .contact-panel .button { flex: 0 0 auto; color: #1e3a8a; background: white; }
+
+    footer { padding: 30px 0 44px; text-align: center; color: var(--muted); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 850px) {
+      .nav-links a { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 70px; }
+      .code-card { transform: none; }
+      .grid { grid-template-columns: 1fr; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">Phong<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-button" id="themeButton" type="button" aria-label="Switch colour theme">🌙</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="reveal">
+        <div class="eyebrow"><span class="dot"></span> Bachelor of Information Technology Student</div>
+        <h1>Building useful ideas with <span class="gradient-text">technology.</span></h1>
+        <p class="hero-copy">Hello, I am Phong Bui, an Information Technology student in Melbourne. This portfolio demonstrates a responsive webpage built with HTML, CSS and JavaScript and hosted using GitHub Pages.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">View projects</a>
+          <a class="button secondary" href="#about">Learn more</a>
+        </div>
+      </div>
+
+      <div class="code-card reveal" aria-label="Decorative code example">
+        <div class="window-dots"><span></span><span></span><span></span></div>
+        <pre><span class="code-purple">const</span> student = {
+  name: <span class="code-green">"Phong Bui"</span>,
+  course: <span class="code-green">"Information Technology"</span>,
+  skills: [
+    <span class="code-green">"HTML"</span>, <span class="code-green">"CSS"</span>, <span class="code-green">"JavaScript"</span>
+  ],
+  goal: <span class="code-blue">"Keep learning and building"</span>
+};</pre>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>About this website</h2>
+          <p>This single-file website was created for the BIT106 GitHub SaaS tutorial. It shows how a cloud platform can support source control, collaboration and web hosting.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal"><div class="icon">01</div><h3>Single HTML file</h3><p>The structure, styling and interactivity are contained in one index.html file, making deployment simple.</p></article>
+          <article class="card reveal"><div class="icon">02</div><h3>Responsive design</h3><p>The layout automatically adapts to desktop, tablet and mobile screen sizes.</p></article>
+          <article class="card reveal"><div class="icon">03</div><h3>Accessible interface</h3><p>Semantic elements, readable contrast and reduced-motion support improve usability.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading reveal"><h2>Core skills</h2><p>Technologies and workplace abilities used to turn ideas into clear digital experiences.</p></div>
+        <div class="grid">
+          <article class="card reveal"><div class="icon">&lt;/&gt;</div><h3>Web development</h3><p>HTML page structure, modern CSS layouts and JavaScript interactions.</p></article>
+          <article class="card reveal"><div class="icon">GH</div><h3>GitHub workflow</h3><p>Repositories, branches, commits, pull requests and GitHub Pages deployment.</p></article>
+          <article class="card reveal"><div class="icon">CO</div><h3>Collaboration</h3><p>Communication, teamwork, constructive reviews and organised version control.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading reveal"><h2>Learning projects</h2><p>Small projects that demonstrate practical foundations in software, hardware and cloud computing.</p></div>
+        <div class="grid">
+          <article class="card project reveal" data-number="1"><span class="tag">HTML · CSS · JS</span><h3>Student Portfolio</h3><p>A responsive portfolio with a colour theme switcher and animated content.</p></article>
+          <article class="card project reveal" data-number="2"><span class="tag">GitHub SaaS</span><h3>Team Collaboration</h3><p>A branch and pull-request workflow used to safely review and merge changes.</p></article>
+          <article class="card project reveal" data-number="3"><span class="tag">Cloud Hosting</span><h3>GitHub Pages</h3><p>A static website published online from the main branch of a public repository.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div><h2>Thanks for visiting.</h2><p>This page is ready to upload to GitHub and publish with GitHub Pages.</p></div>
+          <a class="button" href="#home">Back to top ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">© <span id="year"></span> Phong Bui · Built with HTML, CSS and JavaScript</div></footer>
+
+  <script>
+    const themeButton = document.getElementById("themeButton");
+    const savedTheme = localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      themeButton.textContent = "☀️";
+    }
+
+    themeButton.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const darkMode = document.body.classList.contains("dark");
+      themeButton.textContent = darkMode ? "☀️" : "🌙";
+      localStorage.setItem("portfolio-theme", darkMode ? "dark" : "light");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
